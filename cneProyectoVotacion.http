@@ -1,0 +1,6 @@
+@cneProyectoVotacion_HostAddress = http://localhost:5087
+
+GET {{cneProyectoVotacion_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,20 @@
+# Compilación
+[Bb]in/
+[Oo]bj/
+
+# IDE Rider / VS
+.idea/
+*.user
+*.suo
+*.sln.ide
+rider.project.model.nuget.info
+rider.project.restore.info
+
+# Paquetes NuGet
+**/packages/
+project.assets.json
+project.nuget.cache
+
+# Archivos sensibles / de config local
+Config/
+**/appsettings.Development.json
