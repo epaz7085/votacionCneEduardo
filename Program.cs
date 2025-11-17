@@ -1,9 +1,14 @@
+using cneProyectoVotacion.Services;   // 👈 importante
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// 👇 Registrar FirebaseServices como servicio Singleton
+builder.Services.AddSingleton<FirebaseServices>();
 
+// Add services to the container.
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+
+// Swagger/OpenAPI
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
