@@ -1,20 +1,19 @@
-using cneProyectoVotacion.Services;   // 👈 importante
+using votacionCneEduardo.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// 👇 Registrar FirebaseServices como servicio Singleton
+// Registrar servicios
 builder.Services.AddSingleton<FirebaseServices>();
-
-// Add services to the container.
+builder.Services.AddSingleton<AuthService>();
 builder.Services.AddControllers();
 
-// Swagger/OpenAPI
+// Swagger
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
