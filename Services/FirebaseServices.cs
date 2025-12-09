@@ -1,37 +1,32 @@
-using FirebaseAdmin;
-using Google.Apis.Auth.OAuth2;
+
 using Google.Cloud.Firestore;
 
-namespace cneProyectoVotacion.Services;
+namespace votacionCneEduardo.Services;
 
 public class FirebaseServices
 {
-    private readonly FirestoreDb _firestoreDb;
-    private readonly string _projectId;
+    private readonly FirestoreDb _db;
 
-    public FirebaseServices(IConfiguration configuration)
+    public FirebaseServices()
     {
-        _projectId = configuration["Firebase:ProjectId"]
-                     ?? throw new InvalidOperationException("Firebase:ProjectId no está configurado");
+        // Ruta al archivo JSON dentro del proyecto
+        string credentialPath = Path.Combine(
+            Directory.GetCurrentDirectory(),
+            "Keys",
+            "firebaseKey.json"
+        );
 
-        if (FirebaseApp.DefaultInstance == null)
-        {
-            var credential = GoogleCredential.GetApplicationDefault();
+        Environment.SetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS", credentialPath);
 
-            FirebaseApp.Create(new AppOptions
-            {
-                Credential = credential,
-                ProjectId = _projectId
-            });
-        }
-
-        _firestoreDb = FirestoreDb.Create(_projectId);
+        _db = FirestoreDb.Create("proyectovotacion-7f1b2");
+    }
+    public CollectionReference Collection(string name)
+    {
+        return _db.Collection(name);
+    }
+    public FirestoreDb GetDb()
+    {
+        return _db;
     }
 
-    public FirestoreDb GetFirestoreDb() => _firestoreDb;
-
-    public CollectionReference GetCollection(string collectionName)
-    {
-        return _firestoreDb.Collection(collectionName);
-    }
 }

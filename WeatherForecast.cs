@@ -1,4 +1,4 @@
-namespace cneProyectoVotacion;
+namespace votacionCneEduardo;
 
 public class WeatherForecast
 {
