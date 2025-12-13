@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
 using cneProyectoVotacion.Services;
-using cneProyectoVotacion.Services;
 
 
 namespace cneProyectoVotacion.Controllers;
