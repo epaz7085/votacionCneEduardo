@@ -17,35 +17,36 @@ namespace cneProyectoVotacion.Controllers
             _voteService = voteService;
         }
 
-        /// Emitir voto (un solo voto por usuario)
+        
         [HttpPost("{candidateId}")]
         public async Task<IActionResult> Vote(string candidateId)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (string.IsNullOrEmpty(userId))
-                return Unauthorized("Usuario no autenticado");
+                return Unauthorized();
 
             try
             {
                 var vote = await _voteService.CastVote(userId, candidateId);
-
-                return Ok(new
-                {
-                    message = "Voto registrado exitosamente",
-                    voteId = vote.Id,
-                    candidate = vote.CandidateName,
-                    timestamp = vote.Timestamp
-                });
+                return Ok(vote);
             }
             catch (Exception ex)
             {
-                //  Todas las validaciones vienen del service
-                return BadRequest(new
-                {
-                    error = ex.Message
-                });
+                return BadRequest(new { message = ex.Message });
             }
+        }
+
+        [HttpGet("status")]
+        public async Task<IActionResult> Status()
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized();
+
+            var hasVoted = await _voteService.HasUserVoted(userId);
+            return Ok(new { hasVoted });
         }
     }
 }

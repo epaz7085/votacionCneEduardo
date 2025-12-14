@@ -35,7 +35,7 @@ namespace cneProyectoVotacion.Services
                 Id = userId,
                 Email = registerDto.Email,
                 FullName = registerDto.FullName,
-                Role = "votante",
+                Role = string.IsNullOrWhiteSpace(registerDto.Role) ? "votante": registerDto.Role,
                 CreatedAt = DateTime.UtcNow,
                 IsActive = true,
                 HasVoted = false

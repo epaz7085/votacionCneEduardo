@@ -12,7 +12,7 @@ namespace cneProyectoVotacion.Services
             _firebaseServices = firebaseServices;
         }
 
-        //  Verificar si el usuario ya votó
+        // Verificar si el usuario ya votó
         public async Task<bool> HasUserVoted(string userId)
         {
             var userDoc = await _firebaseServices
@@ -27,7 +27,7 @@ namespace cneProyectoVotacion.Services
             return user.HasVoted;
         }
 
-        // Emitir voto (TRANSACCIÓN)
+        // Emitir voto con TRANSACCIÓN
         public async Task<Vote> CastVote(string userId, string candidateId)
         {
             var db = _firebaseServices.GetFirestoreDb();
@@ -54,7 +54,7 @@ namespace cneProyectoVotacion.Services
                 if (user.HasVoted)
                     throw new Exception("El usuario ya votó");
 
-                // Registrar voto (auditoría)
+                // Crear voto (auditoría)
                 var vote = new Vote
                 {
                     Id = voteRef.Id,
@@ -65,15 +65,16 @@ namespace cneProyectoVotacion.Services
                     Timestamp = DateTime.UtcNow
                 };
 
+                // Guardar voto
                 transaction.Set(voteRef, vote);
 
                 // Actualizar usuario
                 transaction.Update(userRef, new Dictionary<string, object>
                 {
-                    { "HasVoted", true },
-                    { "VotedFor", candidate.Id },
-                    { "VotedForName", candidate.Name },
-                    { "VoteTimestamp", vote.Timestamp }
+                    { "hasVoted", true },
+                    { "votedFor", candidate.Id },
+                    { "votedForName", candidate.Name },
+                    { "voteTimestamp", Timestamp.FromDateTime(DateTime.UtcNow) }
                 });
 
                 // Incrementar contador del candidato

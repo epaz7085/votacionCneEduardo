@@ -1,23 +1,27 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
-
 using cneProyectoVotacion.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//  Registrar FirebaseServices como servicio Singleton
+
+// Firebase
 builder.Services.AddSingleton<FirebaseServices>();
 
+// App services
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<ICandidateService, CandidateService>();
 builder.Services.AddScoped<IVoteService, VoteService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IReportService, ReportService>();
 
-
-// Add services to the container.
+// Controllers
 builder.Services.AddControllers();
 
-
+// =====================
 // JWT CONFIG
+// =====================
 var jwtKey = builder.Configuration["Jwt:Key"]
              ?? throw new Exception("JWT Key no configurada");
 
@@ -46,7 +50,9 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization();
 
-// Swagger/OpenAPI
+// =====================
+// Swagger
+// =====================
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -57,7 +63,7 @@ builder.Services.AddSwaggerGen(options =>
         Scheme = "Bearer",
         BearerFormat = "JWT",
         In = Microsoft.OpenApi.Models.ParameterLocation.Header,
-        Description = "Ingresa el token JWT en este formato: Bearer {tu_token}"
+        Description = "Ingresa el token JWT (Swagger agrega Bearer automáticamente)"
     });
 
     options.AddSecurityRequirement(new Microsoft.OpenApi.Models.OpenApiSecurityRequirement
@@ -78,7 +84,9 @@ builder.Services.AddSwaggerGen(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// =====================
+// Pipeline
+// =====================
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

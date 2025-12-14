@@ -14,5 +14,8 @@ namespace cneProyectoVotacion.DTOs
 
         [Required(ErrorMessage = "El nombre completo es requerido")]
         public string FullName { get; set; } = string.Empty;
+
+        // Opcional: si no viene, será "votante"
+        public string? Role { get; set; }
     }
 }
