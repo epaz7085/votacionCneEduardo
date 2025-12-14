@@ -1,0 +1,27 @@
+<h2>Iniciar sesión</h2>
+
+<form (ngSubmit)="login()" #loginForm="ngForm">
+  <div>
+    <label>Email</label>
+    <input
+      type="email"
+      name="email"
+      [(ngModel)]="email"
+      required
+    />
+  </div>
+
+  <div>
+    <label>Password</label>
+    <input
+      type="password"
+      name="password"
+      [(ngModel)]="password"
+      required
+    />
+  </div>
+
+  <button type="submit" [disabled]="loading">
+    {{ loading ? 'Ingresando...' : 'Login' }}
+  </button>
+</form>
