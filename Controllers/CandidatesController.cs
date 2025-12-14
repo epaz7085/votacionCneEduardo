@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using cneProyectoVotacion.DTOs;
 using cneProyectoVotacion.Services;
+using System.Security.Claims;
 
 namespace cneProyectoVotacion.Controllers
 {
@@ -20,7 +21,7 @@ namespace cneProyectoVotacion.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateCandidateDto dto)
         {
-            var userId = User.FindFirst("userId")?.Value;
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var result = await _candidateService.CreateCandidate(dto, userId!);
             return Ok(result);
         }
