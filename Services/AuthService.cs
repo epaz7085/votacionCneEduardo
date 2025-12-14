@@ -38,7 +38,7 @@ namespace cneProyectoVotacion.Services
                 Role = string.IsNullOrWhiteSpace(registerDto.Role) ? "votante": registerDto.Role,
                 CreatedAt = DateTime.UtcNow,
                 IsActive = true,
-                HasVoted = false
+                hasVoted = false
             };
 
             var userData = new Dictionary<string, object>
@@ -47,7 +47,7 @@ namespace cneProyectoVotacion.Services
                 { "Email", user.Email },
                 { "FullName", user.FullName },
                 { "Role", user.Role },
-                { "HasVoted", user.HasVoted },
+                { "hasVoted", user.hasVoted },
                 { "CreatedAt", user.CreatedAt },
                 { "IsActive", user.IsActive },
                 { "PasswordHash", passwordHash }
@@ -98,7 +98,7 @@ namespace cneProyectoVotacion.Services
                 Email = data["Email"].ToString()!,
                 FullName = data["FullName"].ToString()!,
                 Role = data["Role"].ToString()!,
-                HasVoted = data.ContainsKey("HasVoted") && Convert.ToBoolean(data["HasVoted"]),
+                hasVoted = data.ContainsKey("hasVoted") && Convert.ToBoolean(data["hasVoted"]),
                 IsActive = data.ContainsKey("IsActive") && Convert.ToBoolean(data["IsActive"]),
                 CreatedAt = data.ContainsKey("CreatedAt")
                     ? ((Timestamp)data["CreatedAt"]).ToDateTime()
@@ -133,19 +133,30 @@ namespace cneProyectoVotacion.Services
 
             var data = snapshot.ToDictionary();
 
+            DateTime? voteDate = null;
+
+            if (data.ContainsKey("voteTimestamp") && data["voteTimestamp"] is Timestamp ts)
+            {
+                voteDate = ts.ToDateTime();
+            }
+
             return new User
             {
                 Id = data["Id"].ToString()!,
                 Email = data["Email"].ToString()!,
                 FullName = data["FullName"].ToString()!,
                 Role = data["Role"].ToString()!,
-                HasVoted = data.ContainsKey("HasVoted") && Convert.ToBoolean(data["HasVoted"]),
+                hasVoted = data.ContainsKey("hasVoted") && Convert.ToBoolean(data["hasVoted"]),
+                VotedFor = data.ContainsKey("votedFor") ? data["votedFor"]?.ToString() : null,
+                VotedForName = data.ContainsKey("votedForName") ? data["votedForName"]?.ToString() : null,
+                VoteTimestamp = voteDate,
                 IsActive = data.ContainsKey("IsActive") && Convert.ToBoolean(data["IsActive"]),
-                CreatedAt = data.ContainsKey("CreatedAt")
-                    ? ((Timestamp)data["CreatedAt"]).ToDateTime()
+                CreatedAt = data.ContainsKey("CreatedAt") && data["CreatedAt"] is Timestamp created
+                    ? created.ToDateTime()
                     : DateTime.UtcNow
             };
         }
+
 
         // OBTENER USUARIO POR EMAIL
         public async Task<User?> GetUserByEmail(string email)

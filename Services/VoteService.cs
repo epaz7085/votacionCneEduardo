@@ -24,7 +24,7 @@ namespace cneProyectoVotacion.Services
                 throw new Exception("Usuario no encontrado");
 
             var user = userDoc.ConvertTo<User>();
-            return user.HasVoted;
+            return user.hasVoted;
         }
 
         // Emitir voto con TRANSACCIÓN
@@ -51,7 +51,7 @@ namespace cneProyectoVotacion.Services
                 var candidate = candidateSnap.ConvertTo<Candidate>();
 
                 //  Validación voto único
-                if (user.HasVoted)
+                if (user.hasVoted)
                     throw new Exception("El usuario ya votó");
 
                 // Crear voto (auditoría)

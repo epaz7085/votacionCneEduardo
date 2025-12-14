@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { Router } from '@angular/router';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -46,4 +47,21 @@ export class AuthService {
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user).role : null;
   }
+
+  getMe(): Observable<any> {
+  return this.http.get<any>(`${this.apiUrl}/me`);
+  }
+
+  register(data: {
+    fullName: string;
+    email: string;
+    password: string;
+  }) {
+    return this.http.post<any>(
+      `${this.apiUrl}/register`,
+      data
+    );
+  }
+
 }
+

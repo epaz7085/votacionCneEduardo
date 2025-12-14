@@ -19,7 +19,7 @@ namespace cneProyectoVotacion.Models
         public string Role { get; set; } = "votante";
 
         [FirestoreProperty]
-        public bool HasVoted { get; set; } = false;
+        public bool hasVoted { get; set; } = false;
 
         [FirestoreProperty]
         public string? VotedFor { get; set; }

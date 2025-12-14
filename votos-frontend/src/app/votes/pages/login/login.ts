@@ -38,13 +38,19 @@ export class LoginComponent {
         }));
 
         this.loading = false;
-        this.router.navigate(['/votes']);
+
+        // REDIRECCIÓN POR ROL
+        if (res.role === 'admin') {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/votes']);
+        }
       },
-      error: (err) => {
-        console.error(err);
+      error: () => {
         alert('Credenciales incorrectas');
         this.loading = false;
       }
     });
   }
+
 }

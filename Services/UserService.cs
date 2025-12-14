@@ -13,26 +13,35 @@ namespace cneProyectoVotacion.Services
             _firebase = firebase;
         }
 
-        public async Task<List<UserAuditDto>> GetAllUsers()
-        {
+       public async Task<List<UserAuditDto>> GetAllUsers()
+{
             var snapshot = await _firebase
                 .GetCollection("users")
                 .GetSnapshotAsync();
 
-            return snapshot.Documents.Select(doc =>
+           return snapshot.Documents.Select(doc =>
             {
-                var user = doc.ConvertTo<User>();
+                var data = doc.ToDictionary();
+
+                DateTime? voteDate = null;
+                if (data.ContainsKey("voteTimestamp") && data["voteTimestamp"] is Timestamp ts)
+                {
+                    voteDate = ts.ToDateTime();
+                }
 
                 return new UserAuditDto
                 {
-                    Id = user.Id,
-                    Email = user.Email,
-                    FullName = user.FullName,
-                    HasVoted = user.HasVoted,
-                    VotedForName = user.VotedForName,
-                    VoteTimestamp = user.VoteTimestamp
+                    Id = data.ContainsKey("Id") ? data["Id"]?.ToString() ?? "" : "",
+                    Email = data.ContainsKey("Email") ? data["Email"]?.ToString() ?? "" : "",
+                    FullName = data.ContainsKey("FullName") ? data["FullName"]?.ToString() ?? "" : "",
+                    HasVoted = data.ContainsKey("hasVoted") && Convert.ToBoolean(data["hasVoted"]),
+                    VotedForName = data.ContainsKey("votedForName")
+                        ? data["votedForName"]?.ToString()
+                        : null,
+                    VoteTimestamp = voteDate
                 };
             }).ToList();
         }
+
     }
 }

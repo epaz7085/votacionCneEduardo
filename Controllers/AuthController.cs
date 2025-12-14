@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using cneProyectoVotacion.DTOs;
 using cneProyectoVotacion.Services;
+using cneProyectoVotacion.Models;
+
 
 namespace cneProyectoVotacion.Controllers
 {
@@ -53,39 +55,31 @@ namespace cneProyectoVotacion.Controllers
             }
         }
 
-        // GET: api/auth/me
+            // GET: api/auth/me
         [HttpGet("me")]
         [Authorize]
         public async Task<IActionResult> Me()
         {
-            try
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized();
+
+            var user = await _authService.GetUserById(userId);
+            if (user == null)
+                return NotFound();
+
+            return Ok(new
             {
-                var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-                if (string.IsNullOrEmpty(userId))
-                    return Unauthorized(new { error = "Token inválido" });
-
-                var user = await _authService.GetUserById(userId);
-
-                if (user == null)
-                    return NotFound(new { error = "Usuario no encontrado" });
-
-                return Ok(new
-                {
-                    user.Id,
-                    user.Email,
-                    user.FullName,
-                    user.Role,
-                    user.HasVoted,
-                    user.VotedFor,
-                    user.VotedForName,
-                    user.VoteTimestamp
-                });
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { error = ex.Message });
-            }
+                user.Id,
+                user.Email,
+                user.FullName,
+                user.Role,
+                user.hasVoted,
+                votedForName = user.VotedForName,
+                voteTimestamp = user.VoteTimestamp
+            });
         }
     }
-}
+}   
+    
+

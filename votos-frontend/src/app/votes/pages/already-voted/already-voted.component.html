@@ -1,0 +1,25 @@
+<h2>Ya votaste</h2>
+
+<div *ngIf="loading">
+  Cargando información del voto...
+</div>
+
+<div *ngIf="!loading && error" style="color:red">
+  {{ error }}
+</div>
+
+<div *ngIf="!loading && !error">
+  <p><strong>Candidato seleccionado:</strong></p>
+  <p>{{ votedForName }}</p>
+
+  <p><strong>Fecha y hora del voto:</strong></p>
+  <p *ngIf="voteTimestamp">
+    {{ voteTimestamp | date:'short' }}
+  </p>
+
+  <hr>
+
+  <p style="color: green; font-weight: bold">
+    Tu voto ha sido registrado correctamente.
+  </p>
+</div>

@@ -1,0 +1,32 @@
+<h2>Registro de Usuario</h2>
+
+<form (ngSubmit)="register()" style="max-width:400px">
+
+  <div>
+    <label>Nombre completo</label>
+    <input [(ngModel)]="fullName" name="fullName" required />
+  </div>
+
+  <div>
+    <label>Email</label>
+    <input type="email" [(ngModel)]="email" name="email" required />
+  </div>
+
+  <div>
+    <label>Contraseña</label>
+    <input type="password" [(ngModel)]="password" name="password" required />
+  </div>
+
+  <div *ngIf="error" style="color:red">
+    {{ error }}
+  </div>
+
+  <br>
+
+  <button type="submit" [disabled]="loading">
+    {{ loading ? 'Registrando...' : 'Registrarse' }}
+  </button>
+
+</form>
+
+
