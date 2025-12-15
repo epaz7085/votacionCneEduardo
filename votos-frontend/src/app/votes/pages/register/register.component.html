@@ -1,0 +1,34 @@
+<div class="portal-container">
+  <div class="portal-card">
+
+    <h2>Registro de Usuario</h2>
+
+    <form (ngSubmit)="register()">
+
+      <div class="field">
+        <label>Nombre completo</label>
+        <input [(ngModel)]="fullName" name="fullName" required />
+      </div>
+
+      <div class="field">
+        <label>Email</label>
+        <input type="email" [(ngModel)]="email" name="email" required />
+      </div>
+
+      <div class="field">
+        <label>Contraseña</label>
+        <input type="password" [(ngModel)]="password" name="password" required />
+      </div>
+
+      <div *ngIf="error" class="error">
+        {{ error }}
+      </div>
+
+      <button type="submit" [disabled]="loading">
+        {{ loading ? 'Registrando...' : 'Registrarse' }}
+      </button>
+
+    </form>
+
+  </div>
+</div>

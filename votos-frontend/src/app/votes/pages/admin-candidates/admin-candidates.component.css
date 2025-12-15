@@ -1,0 +1,116 @@
+/* ===== CONTENEDOR GENERAL ===== */
+:host {
+  display: block;
+  padding: 24px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* ===== TITULOS ===== */
+h2 {
+  margin-bottom: 12px;
+  color: #1f2937;
+}
+
+h3 {
+  margin-top: 24px;
+  margin-bottom: 16px;
+  color: #374151;
+}
+
+/* ===== FORMULARIO ===== */
+div[style*="max-width"] {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+label {
+  font-weight: 600;
+  color: #374151;
+}
+
+input,
+textarea {
+  width: 100%;
+  padding: 8px 10px;
+  margin-top: 4px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+textarea {
+  resize: vertical;
+}
+
+/* ===== BOTONES ===== */
+button {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #1d4ed8;
+}
+
+/* Botón eliminar */
+table button {
+  background-color: #dc2626;
+}
+
+table button:hover {
+  background-color: #b91c1c;
+}
+
+/* ===== TABLA ===== */
+table {
+  width: 100%;
+  margin-top: 16px;
+  border-collapse: collapse;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+thead {
+  background-color: #1f2937;
+  color: #ffffff;
+}
+
+th,
+td {
+  padding: 10px 12px;
+  text-align: left;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+tbody tr:hover {
+  background-color: #eef2ff;
+}
+
+/* ===== HR ===== */
+hr {
+  margin: 30px 0;
+  border: none;
+  border-top: 1px solid #e5e7eb;
+}

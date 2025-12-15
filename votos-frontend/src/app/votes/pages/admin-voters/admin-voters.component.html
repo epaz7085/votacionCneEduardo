@@ -1,0 +1,40 @@
+<h2>Auditoría de Votantes</h2>
+
+<div *ngIf="loading">
+  Cargando usuarios...
+</div>
+
+<div *ngIf="!loading && error" style="color:red">
+  {{ error }}
+</div>
+
+<table *ngIf="!loading && users.length > 0" border="1" cellpadding="8">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Rol</th>
+      <th>Estado</th>
+      <th>Candidato</th>
+      <th>Fecha de voto</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let u of users">
+      <td>{{ u.fullName }}</td>
+      <td>{{ u.email }}</td>
+      <td>{{ u.role }}</td>
+      <td>
+        <span *ngIf="u.hasVoted">Votó</span>
+        <span *ngIf="!u.hasVoted">Pendiente</span>
+      </td>
+      <td>{{ u.votedForName || '-' }}</td>
+      <td>{{ u.voteTimestamp | date:'short' }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="!loading && users.length === 0">
+  No hay usuarios registrados
+</div>

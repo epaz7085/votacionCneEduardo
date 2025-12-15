@@ -1,0 +1,188 @@
+/* ===== CONTENEDOR GENERAL ===== */
+:host {
+  display: block;
+  padding: 24px;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #f5f7fa;
+  min-height: 100vh;
+}
+
+/* ===== TITULOS ===== */
+h2 {
+  margin-bottom: 20px;
+  color: #1f2937;
+}
+
+h3 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  color: #374151;
+}
+
+h4 {
+  margin-bottom: 8px;
+  color: #1f2937;
+}
+
+/* ===== MENSAJES ===== */
+div {
+  margin-bottom: 12px;
+}
+
+div[style*="color:red"] {
+  background-color: #fee2e2;
+  color: #991b1b !important;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+/* ===== RESUMEN ===== */
+p {
+  font-size: 15px;
+  margin: 6px 0;
+}
+
+p strong {
+  color: #1f2937;
+}
+
+/* ===== GANADOR ===== */
+h3 + p strong {
+  color: #166534;
+}
+
+/* ===== GRAFICOS ===== */
+div[style*="display: flex"] {
+  margin-top: 16px;
+}
+
+canvas {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== TABLA ===== */
+table {
+  width: 100%;
+  margin-top: 16px;
+  border-collapse: collapse;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+thead {
+  background-color: #1f2937;
+  color: #ffffff;
+}
+
+th,
+td {
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 14px;
+  vertical-align: top;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+tbody tr:hover {
+  background-color: #eef2ff;
+}
+
+/* ===== PROPUESTAS ===== */
+ul {
+  margin: 0;
+  padding-left: 18px;
+}
+
+li {
+  margin-bottom: 4px;
+}
+
+/* ===== HR ===== */
+hr {
+  margin: 32px 0;
+  border: none;
+  border-top: 1px solid #e5e7eb;
+}
+
+
+/* ===== PANEL RESUMEN SUPERIOR ===== */
+h2 {
+  background: #ffffff;
+  padding: 16px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Bloque de métricas */
+h2 + p,
+h2 + p + div,
+h2 + p + div + p {
+  background-color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 10px;
+  margin-top: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+}
+
+/* ===== CANDIDATO GANADOR ===== */
+h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+h3 + p {
+  background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+  border-left: 6px solid #22c55e;
+  padding: 14px 18px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+/* Nombre del ganador */
+h3 + p strong:first-child {
+  font-size: 16px;
+  color: #166534;
+}
+
+/* ===== TOTAL VOTOS ===== */
+h3 + p + p {
+  font-weight: 600;
+}
+
+/* ===== TITULO GRAFICOS ===== */
+h3:last-of-type {
+  margin-top: 28px;
+  padding-left: 8px;
+  border-left: 4px solid #2563eb;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+.btn-pdf {
+  background: #dc2626;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-pdf:hover {
+  background: #b91c1c;
+}

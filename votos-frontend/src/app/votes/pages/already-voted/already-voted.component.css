@@ -1,0 +1,47 @@
+/* Fondo general */
+.portal-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Tarjeta principal */
+.portal-card {
+  background: white;
+  padding: 30px;
+  width: 360px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+/* Título */
+.portal-card h2 {
+  margin-bottom: 20px;
+  color: #1e3c72;
+}
+
+/* Texto */
+.portal-card p {
+  margin: 6px 0;
+}
+
+/* Separador */
+hr {
+  margin: 20px 0;
+}
+
+/* Éxito */
+.success {
+  color: #166534;
+  font-weight: bold;
+}
+
+/* Error */
+.error {
+  color: #b91c1c;
+  font-weight: bold;
+}

@@ -1,0 +1,31 @@
+<div class="portal-container">
+
+  <!-- YA VOTÓ -->
+  <app-already-voted *ngIf="hasVoted"></app-already-voted>
+
+  <!-- NO HA VOTADO -->
+  <div class="portal-card wide" *ngIf="!hasVoted">
+
+    <h2>Panel de Votación</h2>
+    <p class="subtitle">Selecciona un candidato</p>
+
+    <div class="candidates">
+
+      <div class="candidate-card" *ngFor="let c of candidates">
+        <h3>{{ c.name }}</h3>
+        <p class="party">{{ c.party }}</p>
+
+        <ul *ngIf="c.proposals.length">
+          <li *ngFor="let p of c.proposals">{{ p }}</li>
+        </ul>
+
+        <button (click)="vote(c.id)">
+          🗳️ Votar
+        </button>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

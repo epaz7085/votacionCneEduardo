@@ -1,0 +1,34 @@
+<div class="portal-container" [class.dark]="darkMode">
+<button class="dark-toggle" (click)="toggleDarkMode()">
+  {{ darkMode ? '☀️ Modo claro' : '🌙 Modo oscuro' }}
+</button>
+
+  <div class="portal-card">
+
+    <!-- NOTIFICACIONES -->
+    <div class="notifications-box" *ngIf="notifications.length">
+      <h3>🔔 Notificaciones</h3>
+
+      <div class="notification-card" *ngFor="let n of notifications">
+        <strong>{{ n.title }}</strong>
+        <p>{{ n.message }}</p>
+        <small>{{ n.createdAt?.toDate() | date:'short' }}</small>
+      </div>
+    </div>
+
+    <h2>Portal de Administrador</h2>
+
+    <div class="menu">
+      <button routerLink="/admin">📊 Dashboard</button>
+      <button routerLink="/admin/candidates">👥 Gestión de Candidatos</button>
+      <button routerLink="/admin/users">🧾 Auditoría de Votantes</button>
+    </div>
+
+    <hr>
+
+    <button class="logout" (click)="logout()">🚪 Cerrar sesión</button>
+
+  </div>
+</div>
+
+

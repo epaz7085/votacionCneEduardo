@@ -1,0 +1,78 @@
+<h2>Panel de Administrador</h2>
+<div class="actions">
+  <button class="btn-pdf" (click)="exportToPDF()">
+    📄 Exportar reporte a PDF
+  </button>
+</div>
+
+<!-- LOADING -->
+<div *ngIf="loading">
+  Cargando candidatos...
+</div>
+
+<!-- ERROR -->
+<div *ngIf="!loading && error" style="color:red">
+  {{ error }}
+</div>
+
+<!-- CONTENIDO -->
+<div *ngIf="!loading && !error">
+
+  <p><strong>Total de candidatos:</strong> {{ candidates.length }}</p>
+  <div *ngIf="winner">
+  <h3>🏆 Candidato ganador</h3>
+  <p>
+    <strong>{{ winner.name }}</strong>
+    ({{ winner.party }}) con
+    <strong>{{ winner.votesCount }}</strong> votos
+  </p>
+</div>
+
+<p><strong>Total de votos emitidos:</strong> {{ totalVotes }}</p>
+
+
+  <!-- GRÁFICOS -->
+  <h3>Gráficos</h3>
+
+  <div style="display: flex; gap: 40px; flex-wrap: wrap;">
+    <div>
+      <h4>Votos por candidato</h4>
+      <canvas #barCanvas width="400" height="300"></canvas>
+    </div>
+
+    <div>
+      <h4>Distribución de votos</h4>
+      <canvas #pieCanvas width="300" height="300"></canvas>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- TABLA -->
+  <h3>Detalle de Candidatos</h3>
+
+  <table border="1" cellpadding="8" cellspacing="0">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Partido</th>
+        <th>Propuestas</th>
+        <th>Votos</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let c of candidates">
+        <td>{{ c.name }}</td>
+        <td>{{ c.party }}</td>
+        <td>
+          <ul>
+            <li *ngFor="let p of c.proposals">{{ p }}</li>
+          </ul>
+        </td>
+        <td>{{ c.votesCount }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <hr>
+</div>

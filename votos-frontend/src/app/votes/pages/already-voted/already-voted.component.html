@@ -1,0 +1,31 @@
+<div class="portal-container">
+  <div class="portal-card">
+
+    <h2>Ya votaste</h2>
+
+    <div *ngIf="loading">
+      Cargando información del voto...
+    </div>
+
+    <div *ngIf="!loading && error" class="error">
+      {{ error }}
+    </div>
+
+    <div *ngIf="!loading && !error">
+      <p><strong>Candidato seleccionado:</strong></p>
+      <p>{{ votedForName }}</p>
+
+      <p><strong>Fecha y hora del voto:</strong></p>
+      <p *ngIf="voteTimestamp">
+        {{ voteTimestamp | date:'short' }}
+      </p>
+
+      <hr>
+
+      <p class="success">
+        ✔ Tu voto ha sido registrado correctamente.
+      </p>
+    </div>
+
+  </div>
+</div>

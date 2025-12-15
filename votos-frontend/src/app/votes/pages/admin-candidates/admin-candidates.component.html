@@ -1,0 +1,61 @@
+<h2>Gestión de Candidatos</h2>
+
+<hr>
+
+<h3>Crear Candidato</h3>
+
+<div style="max-width:400px">
+
+  <label>Nombre  </label>
+  <input [(ngModel)]="name" />
+  <br>
+  <br>
+  <label>Partido  </label>
+  <input [(ngModel)]="party" />
+  <br>
+  <br>
+  <label>URL Foto  </label>
+  <input [(ngModel)]="photoUrl" />
+  <br>
+  <br>
+  <label>URL Logo  </label>
+  <input [(ngModel)]="logoUrl" />
+  <br>
+  <br>
+  <label>Propuestas (una por línea)</label>
+  <br>
+  <br>
+  <textarea rows="4" [(ngModel)]="proposalsText"></textarea>
+
+  <br><br>
+
+  <button (click)="createCandidate()">Guardar</button>
+</div>
+
+<hr>
+
+<h3>Lista de Candidatos</h3>
+
+<table border="1" cellpadding="6">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Partido</th>
+      <th>Votos</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let c of candidates">
+      <td>{{ c.name }}</td>
+      <td>{{ c.party }}</td>
+      <td>{{ c.votesCount }}</td>
+      <td>
+        <button (click)="deleteCandidate(c.id)">
+          Eliminar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

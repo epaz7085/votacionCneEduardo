@@ -1,0 +1,85 @@
+/* Fondo general */
+.portal-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Tarjeta principal */
+.portal-card {
+  background: white;
+  padding: 30px;
+  width: 360px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+/* Título */
+.portal-card h2 {
+  margin-bottom: 20px;
+  color: #1e3c72;
+}
+
+/* Campos */
+.field {
+  margin-bottom: 14px;
+  text-align: left;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #1e3c72;
+}
+
+.field input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  font-size: 14px;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: #2a5298;
+  box-shadow: 0 0 0 2px rgba(42, 82, 152, 0.25);
+}
+
+/* Botón */
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #2a5298;
+  color: white;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.2s;
+}
+
+button:hover:not(:disabled) {
+  background-color: #1e3c72;
+  transform: translateY(-2px);
+}
+
+button:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+}
+
+/* Error */
+.error {
+  margin-top: 10px;
+  color: #b91c1c;
+  font-weight: 600;
+  text-align: center;
+}
