@@ -37,6 +37,7 @@ namespace cneProyectoVotacion.Services
                 var userRef = _firebaseServices.GetCollection("users").Document(userId);
                 var candidateRef = _firebaseServices.GetCollection("candidates").Document(candidateId);
                 var voteRef = _firebaseServices.GetCollection("votes").Document();
+                var notificationRef = _firebaseServices.GetCollection("notifications").Document();
 
                 var userSnap = await transaction.GetSnapshotAsync(userRef);
                 var candidateSnap = await transaction.GetSnapshotAsync(candidateRef);
@@ -81,6 +82,17 @@ namespace cneProyectoVotacion.Services
                 transaction.Update(candidateRef, new Dictionary<string, object>
                 {
                     { "VotesCount", candidate.VotesCount + 1 }
+                });
+
+
+                //  CREAR NOTIFICACIÓN EN TIEMPO REAL
+                transaction.Set(notificationRef, new Dictionary<string, object>
+                {
+                    { "title", "Nuevo voto registrado" },
+                    { "message", $"El usuario {user.FullName} votó por {candidate.Name}" },
+                    { "role", "admin" },
+                    { "read", false },
+                    { "createdAt", Timestamp.GetCurrentTimestamp() }
                 });
 
                 return vote;

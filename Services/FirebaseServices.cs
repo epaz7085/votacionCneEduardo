@@ -12,11 +12,20 @@ public class FirebaseServices
     public FirebaseServices(IConfiguration configuration)
     {
         _projectId = configuration["Firebase:ProjectId"]
-                     ?? throw new InvalidOperationException("Firebase:ProjectId no está configurado");
+            ?? throw new Exception("Firebase:ProjectId no está configurado");
+
+        var credentialsPath =
+            Environment.GetEnvironmentVariable("GOOGLE_APPLICATION_CREDENTIALS");
+
+        if (string.IsNullOrEmpty(credentialsPath))
+            throw new Exception("GOOGLE_APPLICATION_CREDENTIALS no está configurado");
+
+        if (!File.Exists(credentialsPath))
+            throw new Exception($"Archivo de credenciales no existe: {credentialsPath}");
 
         if (FirebaseApp.DefaultInstance == null)
         {
-            var credential = GoogleCredential.GetApplicationDefault();
+            var credential = GoogleCredential.FromFile(credentialsPath);
 
             FirebaseApp.Create(new AppOptions
             {

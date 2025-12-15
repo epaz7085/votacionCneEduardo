@@ -66,3 +66,112 @@ hr {
 .logout:hover {
   background-color: #b71c1c;
 }
+
+.notifications-box {
+  background: #f8fafc;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.notification-card {
+  background: white;
+  border-left: 4px solid #2563eb;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+.notification-card p {
+  margin: 4px 0;
+  color: #334155;
+}
+
+.notification-card small {
+  color: #64748b;
+}
+
+.notifications-box {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+/* ===== MODO OSCURO ===== */
+
+.portal-container.dark {
+  background: linear-gradient(135deg, #0f172a, #020617);
+}
+
+.portal-container.dark .portal-card {
+  background: #020617;
+  color: #e5e7eb;
+}
+
+.portal-container.dark h2,
+.portal-container.dark h3 {
+  color: #e5e7eb;
+}
+
+.portal-container.dark .menu button {
+  background-color: #1e293b;
+}
+
+.portal-container.dark .menu button:hover {
+  background-color: #334155;
+}
+
+.portal-container.dark .notification-card {
+  background: #020617;
+  border-left-color: #38bdf8;
+}
+
+.portal-container.dark .notification-card p,
+.portal-container.dark .notification-card small {
+  color: #cbd5f5;
+}
+
+.dark-toggle {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #1e293b;
+  color: white;
+  border: none;
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.4);
+  transition: background .3s, transform .2s;
+}
+
+.dark-toggle:hover {
+  background: #334155;
+  transform: translateY(-50%) scale(1.05);
+}
+
+.portal-container,
+.portal-card,
+.menu button,
+.notification-card {
+  transition: background-color .3s ease, color .3s ease;
+}
+
+.portal-container.dark ::-webkit-scrollbar {
+  width: 6px;
+}
+
+.portal-container.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 10px;
+}
+.portal-container.dark .notifications-box h3 {
+  color: #e5e7eb;
+}
+
+.portal-container.dark .notifications-box h3 {
+  color: #e5e7eb;
+  border-bottom: 1px solid #334155;
+  padding-bottom: 6px;
+}
