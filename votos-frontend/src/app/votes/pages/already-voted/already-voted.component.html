@@ -1,25 +1,31 @@
-<h2>Ya votaste</h2>
+<div class="portal-container">
+  <div class="portal-card">
 
-<div *ngIf="loading">
-  Cargando información del voto...
-</div>
+    <h2>Ya votaste</h2>
 
-<div *ngIf="!loading && error" style="color:red">
-  {{ error }}
-</div>
+    <div *ngIf="loading">
+      Cargando información del voto...
+    </div>
 
-<div *ngIf="!loading && !error">
-  <p><strong>Candidato seleccionado:</strong></p>
-  <p>{{ votedForName }}</p>
+    <div *ngIf="!loading && error" class="error">
+      {{ error }}
+    </div>
 
-  <p><strong>Fecha y hora del voto:</strong></p>
-  <p *ngIf="voteTimestamp">
-    {{ voteTimestamp | date:'short' }}
-  </p>
+    <div *ngIf="!loading && !error">
+      <p><strong>Candidato seleccionado:</strong></p>
+      <p>{{ votedForName }}</p>
 
-  <hr>
+      <p><strong>Fecha y hora del voto:</strong></p>
+      <p *ngIf="voteTimestamp">
+        {{ voteTimestamp | date:'short' }}
+      </p>
 
-  <p style="color: green; font-weight: bold">
-    Tu voto ha sido registrado correctamente.
-  </p>
+      <hr>
+
+      <p class="success">
+        ✔ Tu voto ha sido registrado correctamente.
+      </p>
+    </div>
+
+  </div>
 </div>

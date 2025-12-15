@@ -6,7 +6,8 @@ import { UserService, User } from '../../services/user.service';
   selector: 'app-admin-voters',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './admin-voters.component.html'
+  templateUrl: './admin-voters.component.html',
+  styleUrls: ['./admin-voters.component.css']
 })
 export class AdminVotersComponent implements OnInit {
 

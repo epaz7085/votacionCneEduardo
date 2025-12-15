@@ -8,31 +8,8 @@ import { AlreadyVotedComponent } from '../already-voted/already-voted.component'
   selector: 'app-votes',
   standalone: true,
   imports: [CommonModule, AlreadyVotedComponent],
-  template: `
-    <h2>Panel de Votación</h2>
-
-    <!-- YA VOTÓ -->
-    <app-already-voted *ngIf="hasVoted"></app-already-voted>
-
-    <!-- NO HA VOTADO -->
-    <div *ngIf="!hasVoted">
-
-      <h3>Selecciona un candidato</h3>
-
-      <div *ngFor="let c of candidates"
-           style="border:1px solid #000; padding:10px; margin:10px 0;">
-        <h3>{{ c.name }}</h3>
-        <p><strong>Partido:</strong> {{ c.party }}</p>
-
-        <ul *ngIf="c.proposals.length">
-          <li *ngFor="let p of c.proposals">{{ p }}</li>
-        </ul>
-
-        <button (click)="vote(c.id)">Votar</button>
-      </div>
-
-    </div>
-  `
+  templateUrl: './votes.component.html',
+  styleUrls: ['./votes.component.css']
 })
 export class VotesComponent implements OnInit {
 

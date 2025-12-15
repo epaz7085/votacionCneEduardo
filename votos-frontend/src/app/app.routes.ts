@@ -6,6 +6,9 @@ import { AdminDashboardComponent } from './votes/pages/admin-dashboard/admin-das
 import { AdminVotersComponent } from './votes/pages/admin-voters/admin-voters.component';
 import { AdminCandidatesComponent } from './votes/pages/admin-candidates/admin-candidates.component';
 import { RegisterComponent } from './votes/pages/register/register.component';
+import { AdminPortalComponent } from './votes/pages/admin-portal/admin-portal.component';
+import { UserPortalComponent } from './votes/pages/user-portal/user-portal.component';
+
 
 import { AuthGuard } from './votes/guards/auth.guard';
 import { RoleGuard } from './votes/guards/role.guard';
@@ -56,5 +59,19 @@ export const routes: Routes = [
   path: 'register',
   component: RegisterComponent
   },
+
+  {
+  path: 'admin/view',
+  component: AdminPortalComponent,
+  canActivate: [AuthGuard, RoleGuard],
+  data: { role: 'admin' }
+  },
+
+  {
+  path: 'user',
+  component: UserPortalComponent,
+  canActivate: [AuthGuard]
+  }
+
 
 ];

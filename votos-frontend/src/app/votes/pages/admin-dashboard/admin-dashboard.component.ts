@@ -7,6 +7,8 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Candidate, CandidateService } from '../../services/candidate.service';
+import jsPDF from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 import {
   Chart,
@@ -35,7 +37,9 @@ Chart.register(
   selector: 'app-admin-dashboard',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './admin-dashboard.component.html'
+  templateUrl: './admin-dashboard.component.html',
+  styleUrls: ['./admin-dashboard.component.css'],
+  
 })
 export class AdminDashboardComponent implements OnInit {
 
@@ -130,5 +134,57 @@ export class AdminDashboardComponent implements OnInit {
         responsive: true
       }
     });
+    
+  }
+
+  exportToPDF() {
+    const doc = new jsPDF();
+
+    // ===== TÍTULO =====
+    doc.setFontSize(16);
+    doc.text('Reporte de Resultados - VotoSeguro', 14, 15);
+
+    doc.setFontSize(10);
+    doc.text(`Fecha: ${new Date().toLocaleString()}`, 14, 22);
+
+    doc.setFontSize(12);
+    doc.text(`Total de votos: ${this.totalVotes}`, 14, 32);
+
+    if (this.winner) {
+      doc.text(
+        `Candidato ganador: ${this.winner.name} (${this.winner.party}) con ${this.winner.votesCount} votos`,
+        14,
+        40
+      );
+    }
+
+    // ===== TABLA =====
+    const tableData = this.candidates.map(c => [
+      c.name,
+      c.party,
+      c.votesCount
+    ]);
+
+    autoTable(doc, {
+      startY: 50,
+      head: [['Nombre', 'Partido', 'Votos']],
+      body: tableData
+    });
+
+    // Posición después de la tabla
+    const finalY = (doc as any).lastAutoTable.finalY + 10;
+
+    // ===== GRÁFICA DE BARRAS =====
+    const barImage = this.barCanvas.nativeElement.toDataURL('image/png');
+    doc.text('Gráfica de votos por candidato', 14, finalY + 10);
+    doc.addImage(barImage, 'PNG', 14, finalY + 15, 80, 60);
+
+    // ===== GRÁFICA CIRCULAR =====
+    const pieImage = this.pieCanvas.nativeElement.toDataURL('image/png');
+    doc.text('Distribución de votos', 110, finalY + 10);
+    doc.addImage(pieImage, 'PNG', 110, finalY + 15, 80, 60);
+
+    // ===== GUARDAR =====
+    doc.save('reporte_votacion.pdf');
   }
 }

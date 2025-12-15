@@ -1,6 +1,5 @@
-/* You can add global styles to this file, and also import other style files */
-/* ===== LOGIN GLOBAL ===== */
-app-login {
+/* Fondo general */
+.portal-container {
   min-height: 100vh;
   background: linear-gradient(135deg, #1e3c72, #2a5298);
   display: flex;
@@ -9,8 +8,8 @@ app-login {
   font-family: Arial, sans-serif;
 }
 
-/* CARD */
-app-login form {
+/* Tarjeta principal */
+.portal-card {
   background: white;
   padding: 30px;
   width: 360px;
@@ -19,61 +18,68 @@ app-login form {
   text-align: center;
 }
 
-/* TITULO */
-app-login h2 {
+/* Título */
+.portal-card h2 {
   margin-bottom: 20px;
   color: #1e3c72;
 }
 
-/* CAMPOS */
-app-login form div {
-  margin-bottom: 16px;
+/* Campos */
+.field {
+  margin-bottom: 14px;
   text-align: left;
 }
 
-app-login label {
+.field label {
   display: block;
   margin-bottom: 6px;
   font-weight: 600;
   color: #1e3c72;
 }
 
-app-login input {
+.field input {
   width: 100%;
   padding: 10px 12px;
   border-radius: 8px;
   border: 1px solid #cbd5e1;
+  font-size: 14px;
 }
 
-app-login input:focus {
+.field input:focus {
   outline: none;
   border-color: #2a5298;
   box-shadow: 0 0 0 2px rgba(42, 82, 152, 0.25);
 }
 
-/* BOTON */
-app-login button {
+/* Botón */
+button {
   width: 100%;
   padding: 12px;
+  margin-top: 10px;
   font-size: 16px;
   border: none;
   border-radius: 8px;
+  cursor: pointer;
   background-color: #2a5298;
   color: white;
   font-weight: 600;
-  cursor: pointer;
   transition: background 0.3s, transform 0.2s;
 }
 
-app-login button:hover:not(:disabled) {
+button:hover:not(:disabled) {
   background-color: #1e3c72;
   transform: translateY(-2px);
 }
 
-app-login button:disabled {
+button:disabled {
   background-color: #94a3b8;
+  cursor: not-allowed;
 }
-/* OCULTAR TITULO SUELTO DEL LOGIN */
-app-login > h2 {
-  display: none;
+
+/* Error */
+.error {
+  margin-top: 10px;
+  color: #b91c1c;
+  font-weight: 600;
+  text-align: center;
 }

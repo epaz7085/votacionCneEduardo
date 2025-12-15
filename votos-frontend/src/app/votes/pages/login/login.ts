@@ -41,9 +41,9 @@ export class LoginComponent {
 
         // REDIRECCIÓN POR ROL
         if (res.role === 'admin') {
-          this.router.navigate(['/admin']);
+          this.router.navigate(['/admin/view']);
         } else {
-          this.router.navigate(['/votes']);
+          this.router.navigate(['/user']);
         }
       },
       error: () => {

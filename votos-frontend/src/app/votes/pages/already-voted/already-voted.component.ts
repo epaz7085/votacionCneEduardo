@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core'; // 👈 Importamos ChangeDetectorRef
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core'; 
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 
@@ -6,7 +6,8 @@ import { AuthService } from '../../services/auth.service';
   selector: 'app-already-voted',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './already-voted.component.html'
+  templateUrl: './already-voted.component.html',
+styleUrls: ['./already-voted.component.css']
 })
 export class AlreadyVotedComponent implements OnInit {
 
@@ -33,12 +34,12 @@ export class AlreadyVotedComponent implements OnInit {
         : null;
 
         this.loading = false;
-        this.cdr.detectChanges(); // 👈 Forzamos la detección de cambios
+        this.cdr.detectChanges(); 
       },
       error: () => {
         this.error = 'Error cargando información del voto';
         this.loading = false;
-        this.cdr.detectChanges(); // 👈 Forzamos la detección de cambios en caso de error
+        this.cdr.detectChanges();
       }
     });
   }

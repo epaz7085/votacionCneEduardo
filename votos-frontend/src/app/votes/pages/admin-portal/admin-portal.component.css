@@ -1,0 +1,68 @@
+/* Fondo general */
+.portal-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1e3c72, #2a5298);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+}
+
+/* Tarjeta principal */
+.portal-card {
+  background: white;
+  padding: 30px;
+  width: 360px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
+/* Título */
+.portal-card h2 {
+  margin-bottom: 20px;
+  color: #1e3c72;
+}
+
+/* Menú */
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Botones */
+.menu button {
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #2a5298;
+  color: white;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.menu button:hover {
+  background-color: #1e3c72;
+  transform: translateY(-2px);
+}
+
+hr {
+  margin: 20px 0;
+}
+
+.logout {
+  background-color: #d32f2f;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.3s;
+}
+
+.logout:hover {
+  background-color: #b71c1c;
+}

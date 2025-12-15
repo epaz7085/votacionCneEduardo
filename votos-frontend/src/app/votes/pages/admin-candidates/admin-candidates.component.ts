@@ -7,7 +7,8 @@ import { CandidateService, Candidate } from '../../services/candidate.service';
   selector: 'app-admin-candidates',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './admin-candidates.component.html'
+  templateUrl: './admin-candidates.component.html',
+  styleUrls: ['./admin-candidates.component.css']
 })
 export class AdminCandidatesComponent implements OnInit {
 
